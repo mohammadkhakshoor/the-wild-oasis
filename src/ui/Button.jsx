@@ -58,4 +58,9 @@ const Button = styled.button`
     background-color: var(--color-brand-700);
   }
 `;
+
+Button.defaultProps = {
+  variations: "primary",
+  size: "medium",
+};
 export default Button;
