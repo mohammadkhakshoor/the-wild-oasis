@@ -48,15 +48,11 @@ const variations = {
   `,
 };
 const Button = styled.button`
-  color: var(--color-brand-50);
-  background-color: var(--color-brand-500);
   border: none;
   border-radius: var(--border-radius-sm);
-  font-weight: 500;
-  font-size: 1.4rem;
-  padding: 1.2rem 1.6rem;
   box-shadow: var(--shadow-sm);
-  cursor: pointer;
+  ${(props) => variations[props.variations]}
+  ${(props) => sizes[props.size]}
 
   &:hover {
     background-color: var(--color-brand-700);
