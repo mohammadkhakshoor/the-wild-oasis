@@ -7,7 +7,7 @@ import useCreateCabin from "./useCreateCabin";
 import useEditCabin from "./useEditCabin";
 
 import { useForm } from "react-hook-form";
-import { Spinnerme } from "../../ui/Spinner";
+import { CustomSpinner } from "../../ui/Spinner";
 import FormRow, { Error } from "../../ui/FormRow";
 
 function CreateCabinForm({ cabinToEdit = {} }) {
@@ -26,9 +26,9 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   });
 
   const { isCreatingCabin, createCabinFn } = useCreateCabin();
-  const { isEdittingCabin, EditCabinFn } = useEditCabin();
+  const { isEditingCabin, EditCabinFn } = useEditCabin();
 
-  const isWorking = isEdittingCabin || isCreatingCabin;
+  const isWorking = isEditingCabin || isCreatingCabin;
   function onSubmit(data) {
     if (isEditSession) {
       EditCabinFn(
@@ -56,7 +56,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   // }
 
   if (isWorking) {
-    return <Spinnerme />;
+    return <CustomSpinner />;
   }
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

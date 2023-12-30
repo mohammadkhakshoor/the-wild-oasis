@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 
-const rotateme = keyframes`
+const customRotate = keyframes`
 0% {
       inset: 0 28px 28px 0;
     }
@@ -30,7 +30,7 @@ const rotateme = keyframes`
     }
 `;
 
-const Spinnerme = styled.div`
+const CustomSpinner = styled.div`
   width: 52px;
   aspect-ratio: 1;
   position: relative;
@@ -41,16 +41,16 @@ const Spinnerme = styled.div`
     position: absolute;
     border-radius: 50px;
     box-shadow: 0 0 0 3px inset #516843;
-    animation: ${rotateme} 2.5s infinite;
+    animation: ${customRotate} 2.5s infinite;
   }
   &:after {
     animation-delay: -1.25s;
   }
 `;
-export { Spinnerme };
+export { CustomSpinner };
 
 /* 
-const rotateme = keyframes`
+const customRotate = keyframes`
   0% {
     transform: rotate(0deg);
   }
@@ -60,7 +60,7 @@ const rotateme = keyframes`
 `;  
 */
 
-/* const Spinnerme = styled.div`
+/* const CustomSpinner = styled.div`
   background: transparent;
   width: 50px;
   height: 50px;
@@ -69,7 +69,7 @@ const rotateme = keyframes`
   border-bottom: 4.2px solid #789b62;
   border-left: 4.2px solid #f2ca91;
   border-radius: 50%;
-  animation: ${rotateme} 0.4s linear infinite;
+  animation: ${customRotate} 0.4s linear infinite;
 `; */
 
-// export { Spinnerme };
+// export { CustomSpinner };

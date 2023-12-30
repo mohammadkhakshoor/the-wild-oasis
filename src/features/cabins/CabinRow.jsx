@@ -2,11 +2,13 @@ import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCabin } from "../../services/apiCabins";
-import { Spinnerme } from "../../ui/Spinner";
+import { CustomSpinner } from "../../ui/Spinner";
 import toast from "react-hot-toast";
 import CreateCabinForm from "./CreateCabinForm";
 import { useState } from "react";
 import useDeleteCabin from "./useDeleteCabin";
+import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
+import useCreateCabin from "./useCreateCabin";
 
 const TableRow = styled.div`
   display: grid;
@@ -49,9 +51,23 @@ const Discount = styled.div`
 
 const CabinRow = ({ cabin }) => {
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const { id: cabinId, name, image, discount, maxCapacity, regularPrice } = cabin;
+  const { id: cabinId, name, image, discount, maxCapacity, regularPrice, description } = cabin;
   const { isLoading, mutate } = useDeleteCabin();
-  if (isLoading) return <Spinnerme />;
+  const { isCreatingCabin, createCabinFn } = useCreateCabin();
+
+  function handleDuplication() {
+    const duplicate = {
+      name: `copy of ${name}`,
+      image,
+      discount,
+      maxCapacity,
+      regularPrice,
+      description,
+    };
+    createCabinFn(duplicate);
+  }
+
+  if (isLoading) return <CustomSpinner />;
   return (
     <>
       <TableRow role="row">
@@ -61,8 +77,15 @@ const CabinRow = ({ cabin }) => {
         <Price>{formatCurrency(regularPrice)}</Price>
         <Discount>{formatCurrency(discount)}</Discount>
         <div>
-          <button onClick={() => setIsEditOpen((show) => !show)}>Edit</button>
-          <button onClick={() => mutate(cabinId)}>Delete</button>
+          <button onClick={handleDuplication}>
+            <HiSquare2Stack />
+          </button>
+          <button onClick={() => setIsEditOpen((show) => !show)}>
+            <HiPencil />
+          </button>
+          <button onClick={() => mutate(cabinId)}>
+            <HiTrash />
+          </button>
         </div>
       </TableRow>
       {isEditOpen && <CreateCabinForm cabinToEdit={cabin} />}
