@@ -30,7 +30,7 @@ const rotateme = keyframes`
     }
 `;
 
-const Spinnerme = styled.div`
+const CustomSpinner = styled.div`
   width: 52px;
   aspect-ratio: 1;
   position: relative;
@@ -47,7 +47,7 @@ const Spinnerme = styled.div`
     animation-delay: -1.25s;
   }
 `;
-export { Spinnerme };
+export { CustomSpinner };
 
 /* 
 const rotateme = keyframes`
@@ -60,7 +60,7 @@ const rotateme = keyframes`
 `;  
 */
 
-/* const Spinnerme = styled.div`
+/* const CustomSpinner = styled.div`
   background: transparent;
   width: 50px;
   height: 50px;
@@ -72,4 +72,4 @@ const rotateme = keyframes`
   animation: ${rotateme} 0.4s linear infinite;
 `; */
 
-// export { Spinnerme };
+// export { CustomSpinner };

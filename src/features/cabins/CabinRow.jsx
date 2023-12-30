@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCabin } from "../../services/apiCabins";
-import { Spinnerme } from "../../ui/Spinner";
+import { CustomSpinner } from "../../ui/Spinner";
 import toast from "react-hot-toast";
 import CreateCabinForm from "./CreateCabinForm";
 import { useState } from "react";
@@ -51,7 +51,7 @@ const CabinRow = ({ cabin }) => {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const { id: cabinId, name, image, discount, maxCapacity, regularPrice } = cabin;
   const { isLoading, mutate } = useDeleteCabin();
-  if (isLoading) return <Spinnerme />;
+  if (isLoading) return <CustomSpinner />;
   return (
     <>
       <TableRow role="row">

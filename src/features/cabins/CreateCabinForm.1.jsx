@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { createAndEditCabin } from "../../services/apiCabins";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { Spinnerme } from "../../ui/Spinner";
+import { CustomSpinner } from "../../ui/Spinner";
 import FormRow, { Error } from "../../ui/FormRow";
 
 export function CreateCabinForm({ cabinToEdit = {}, handleOpenForm }) {
@@ -39,7 +39,7 @@ export function CreateCabinForm({ cabinToEdit = {}, handleOpenForm }) {
       toast.error(err.message);
     },
   });
-  const { isLoading: isEdittingCabin, mutate: EditCabinFn } = useMutation({
+  const { isLoading: isEditingCabin, mutate: EditCabinFn } = useMutation({
     mutationFn: ({ data, editId }) => createAndEditCabin(data, editId),
     onSuccess: () => {
       toast.success("Cabin Edited successfully");
@@ -53,7 +53,7 @@ export function CreateCabinForm({ cabinToEdit = {}, handleOpenForm }) {
       toast.error(err.message);
     },
   });
-  const isWorking = isEdittingCabin || isCreatingCabin;
+  const isWorking = isEditingCabin || isCreatingCabin;
   function onSubmit(data) {
     if (isEditSession) {
       EditCabinFn({ data: { ...data }, editId });
@@ -66,7 +66,7 @@ export function CreateCabinForm({ cabinToEdit = {}, handleOpenForm }) {
   //   console.log(errs);
   // }
   if (isWorking) {
-    return <Spinnerme />;
+    return <CustomSpinner />;
   }
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

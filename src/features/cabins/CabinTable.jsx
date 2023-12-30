@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
 import { getCabins } from "../../services/apiCabins";
-import { Spinnerme } from "../../ui/Spinner";
+import { CustomSpinner } from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
 import Button from "../../ui/Button";
 import useCabins from "./useCabins";
@@ -33,7 +33,7 @@ const TableHeader = styled.header`
 const CabinTable = () => {
   const { isLoading, cabins } = useCabins();
   if (isLoading) {
-    return <Spinnerme />;
+    return <CustomSpinner />;
   }
 
   return (
